@@ -8,7 +8,10 @@
             Это сделано для того, чтобы при изменении url не редактировать шаблон.
             -->
 
-            <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a> </li>
+            <!-- <li><a href="{ url 'detail' question.id }">{{ question.question_text }}</a> </li> -->
+
+            <!--Добавляем пространство имён URL (app_name = 'polls')-->
+            <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a> </li>
 
         {% endfor %}
     </ul>

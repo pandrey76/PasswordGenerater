@@ -18,6 +18,10 @@ from django.urls import path
 
 from . import views
 
+
+# Пространство имён URL , определяем имя приложения для шаблонизатора
+app_name = 'polls'
+
 urlpatterns = [
     # Добавляем view
     # ex: /polls/
