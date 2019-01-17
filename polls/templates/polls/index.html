@@ -1,0 +1,17 @@
+{%  if latest_question_list %}
+    <ul>
+        {%  for question in latest_question_list %}
+            <!--<li><a href="/polls/{{  question.id }}/">{{ question.question_text }}</a> </li>--><!--Первый вариант-->
+
+            <!--the 'name' value as called by the "url"  template tag in polls/urls.py:  "path('<int:question_id>/', views.detail, name='detail'),/"-->
+            <!-- Тэг "url" позволяет связать имя (name='detail') с соответсвующим url в файле polls/urls.py (path('<int:question_id>/', views.detail, name='detail'),)
+            Это сделано для того, чтобы при изменении url не редактировать шаблон.
+            -->
+
+            <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a> </li>
+
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

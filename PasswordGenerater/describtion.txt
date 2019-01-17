@@ -1,0 +1,28 @@
+
+
+Узнать версию django:
+    python3 -m django --version
+
+Создание проекта mysite:
+    django-admin startproject mysite
+
+Запуск сервиса:
+    python3 manage.py runserver
+
+Создание приложения polls:
+    python3 manage.py startapp polls
+
+Создаём миграции приложения polls:
+    python manage.py makemigrations polls
+
+Переносим данные в базу данных для приложения polls:
+    python manage.py migrate
+
+Создаём код SQL из данных, находящихся polls/0001_initial.py,
+    python manage.py sqlmigrate polls 0001
+
+Работаем с Python API, запускае оболочку IPython:
+    python manage.py shell
+
+Создаём суперпользователя,  Запуск админки http://127.0.0.1:8000/admin/:
+    python manage.py createsuperuse
