@@ -23,4 +23,6 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     # Это ислючения, магия Django
     path('admin/', admin.site.urls),
+    # Добавляем приложение pswgen
+    path('pswgen/', include('pswgen.urls')),
 ]
