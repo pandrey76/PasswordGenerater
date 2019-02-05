@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Добавляем своё приложение
     'polls.apps.PollsConfig',
     'pswgen.apps.PswgenConfig',
+    'jsgames.apps.JsgamesConfig',
 ]
 
 MIDDLEWARE = [

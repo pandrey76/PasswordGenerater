@@ -25,4 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # Добавляем приложение pswgen
     path('pswgen/', include('pswgen.urls')),
+    # Добавляем приложение jsgames
+    path('jsgames/', include('jsgames.urls')),
+
 ]
