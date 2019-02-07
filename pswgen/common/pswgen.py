@@ -6,9 +6,14 @@ def get_rnd_psw_symbol():
     return choice(psw_source_str)
 
 
-if __name__ == "__main__":
+def get_rnd_psw():
     psw_len = 20
     rez_str = ""
     for i in range(0, psw_len):
         rez_str = rez_str + get_rnd_psw_symbol()
-    print(rez_str)
+    # print(rez_str)
+    return rez_str
+
+
+if __name__ == "__main__":
+    print(get_rnd_psw())

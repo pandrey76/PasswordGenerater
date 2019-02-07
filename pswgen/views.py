@@ -1,6 +1,10 @@
 from django.shortcuts import render
 
-from django.views import generic
+from .common.pswgen import get_rnd_psw
+
+# from django.views import generic
+
+
 # Create your views here.
 
 # class IndexView(generic):
@@ -10,9 +14,11 @@ from django.views import generic
 
 
 def index(request):
-    # print(request)
+    print(request)
+    psw = get_rnd_psw()
     return render(request, 'pswgen/index.html',
                   {
                         'message': "Hello from index.",
+                           'random_password': psw,
                   }
                   )
