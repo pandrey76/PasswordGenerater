@@ -12,7 +12,6 @@ from django.urls import reverse
 
 class QuestionModelTests(TestCase):
 
-
     def test_was_published_recently_with_future_question(self):
         """
             was_published_recently() returns False for questions whose pub_date
@@ -21,7 +20,6 @@ class QuestionModelTests(TestCase):
         time = timezone.now() + datetime.timedelta(days=30)
         future_question = Question(pub_date=time)
         self.assertIs(future_question.was_published_recently(), False)
-
 
     def test_was_published_recently_witn_recent_question(self):
         """
@@ -32,6 +30,7 @@ class QuestionModelTests(TestCase):
         recent_question = Question(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
 
+
 def create_question(question_text, days):
     """
         Create a question with the given `question_text` and published the
@@ -41,8 +40,8 @@ def create_question(question_text, days):
     time = timezone.now() + datetime.timedelta(days=days)
     return Question.objects.create(question_text=question_text, pub_date=time)
 
-class QuestionIndexViewTests(TestCase):
 
+class QuestionIndexViewTests(TestCase):
 
     def test_no_questions(self):
         """
@@ -52,7 +51,6 @@ class QuestionIndexViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No polls are available.")
         self.assertQuerysetEqual(response.context['latest_question_list'],[])
-
 
     def test_past_question(self):
         """
@@ -66,7 +64,6 @@ class QuestionIndexViewTests(TestCase):
             ['<Question: Past question.>']
          )
 
-
     def test_future_question(self):
         """
             Questions with a pub_date in the future aren't displayed on
@@ -77,8 +74,7 @@ class QuestionIndexViewTests(TestCase):
         self.assertContains(response, "No polls are available.")
         self.assertQuerysetEqual(response.context["latest_question_list"], [])
 
-
-    def test_futeure_question_and_past_question(self):
+    def test_future_question_and_past_question(self):
         """
             Even if both past and future questions exist, only past questions
             are displayed.
@@ -88,7 +84,6 @@ class QuestionIndexViewTests(TestCase):
         response = self.client.get(reverse('polls:index'))
         self.assertQuerysetEqual(response.context['latest_question_list'],
                                  ['<Question: Past question.>'])
-
 
     def test_two_past_questions(self):
         """
@@ -105,7 +100,6 @@ class QuestionIndexViewTests(TestCase):
 
 class QuestionDetailViewTests(TestCase):
 
-
     def test_future_question(self):
         """
             The detail view of a question with a pub_date in the future
@@ -115,7 +109,6 @@ class QuestionDetailViewTests(TestCase):
         url = reverse('polls:detail', args = (future_question.id, ))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
-
 
     def test_past_question(self):
         """

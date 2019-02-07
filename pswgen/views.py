@@ -5,9 +5,9 @@ from django.views import generic
 
 # class IndexView(generic):
 
-
-#class IndexView(generic.ListView):
+# class IndexView(generic.ListView):
 #    template_name = 'pswgen/index.html'
+
 
 def index(request):
     return render(request, 'pswgen/index.html')
