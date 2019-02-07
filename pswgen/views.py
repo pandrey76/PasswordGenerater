@@ -10,4 +10,9 @@ from django.views import generic
 
 
 def index(request):
-    return render(request, 'pswgen/index.html')
+    # print(request)
+    return render(request, 'pswgen/index.html',
+                  {
+                        'message': "Hello from index.",
+                  }
+                  )
