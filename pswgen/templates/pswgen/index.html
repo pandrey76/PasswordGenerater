@@ -3,12 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>Pswgen</title>
-        <p>Index rendering!</p>
-        <h2>{{ message }}</h2>
-        <h1>{{ random_password }}</h1>
-        <p>All ok!</p>
     </head>
     <body>
-
+       <form>
+            <input type="number" size="1" name="generated_password_len" min="6" max="20" value="8">
+            <h1>{{ random_password }}</h1>
+           <button>Generate</button>
+       </form>
     </body>
 </html>
