@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 from .common.pswgen import get_rnd_psw
 
+from .forms import GeneratePasswordForm
+
 # from django.views import generic
 
 
@@ -14,11 +16,21 @@ from .common.pswgen import get_rnd_psw
 
 
 def index(request):
-    print(request)
-    psw = get_rnd_psw()
-    return render(request, 'pswgen/index.html',
-                  {
-                        'message': "Hello from index.",
-                           'random_password': psw,
-                  }
-                  )
+    form = GeneratePasswordForm(request.POST or None)
+    psw = None
+    context = {
+                'form': form,
+                'random_password': psw
+                }
+    if request.method == 'POST' and form.is_valid():
+        psw_length = int(form.cleaned_data.get('psw_length', None))
+        if (psw_length <= 32) and (psw_length >= 6):
+            context['random_password'] = get_rnd_psw(psw_length)
+            return render(request, 'pswgen/index.html', context)
+        else:
+            return render(request, 'pswgen/index.html', context)
+    else:
+        context['form'].psw_length = 7
+        context['form'].psw = get_rnd_psw(context['form'].psw_length)
+        print(context['form'].psw)
+        return render(request, 'pswgen/index.html', context)

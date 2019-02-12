@@ -5,10 +5,18 @@
         <title>Pswgen</title>
     </head>
     <body>
-       <form>
-            <input type="number" size="1" name="generated_password_len" min="6" max="20" value="8">
-            <h1>{{ random_password }}</h1>
-           <button>Generate</button>
-       </form>
+        <form method="post">
+      {% csrf_token %}
+      <table>
+        {{ form }}
+         <h1>{{ random_password }}</h1>
+        <tr>
+          <td colspan="2">
+            <input type="submit" value="Generate"/>
+          </td>
+        </tr>
+      </table>
+    </form>
     </body>
+
 </html>
