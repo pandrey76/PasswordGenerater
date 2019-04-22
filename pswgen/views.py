@@ -25,12 +25,11 @@ def index(request):
     if request.method == 'POST' and form.is_valid():
         psw_length = int(form.cleaned_data.get('psw_length', None))
         if (psw_length <= 32) and (psw_length >= 6):
-            context['random_password'] = get_rnd_psw(psw_length)
+            context['random_password'] = get_rnd_psw(psw_length )
             return render(request, 'pswgen/index.html', context)
         else:
             return render(request, 'pswgen/index.html', context)
     else:
-        context['form'].psw_length = 7
-        context['form'].psw = get_rnd_psw(context['form'].psw_length)
-        print(context['form'].psw)
+        psw_length_initial = 6
+        context['random_password'] = get_rnd_psw(psw_length_initial)
         return render(request, 'pswgen/index.html', context)
